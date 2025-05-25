@@ -1,1 +1,1 @@
-# Smart-calculator-for-Micro-IT
+# Smart-calculator Project for Micro IT
