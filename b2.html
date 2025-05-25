@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scientific Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calculator {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      width: 350px;
+    }
+
+    .display {
+      background: #333;
+      color: #0f0;
+      font-size: 24px;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: right;
+      overflow-x: auto;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #2c2c2c;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #444;
+    }
+
+    .btn.operator {
+      background: #007acc;
+    }
+
+    .btn.equal {
+      background: #28a745;
+    }
+
+    .btn.clear {
+      background: #dc3545;
+    }
+
+    .btn.wide {
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div id="display" class="display">0</div>
+    <div class="buttons">
+      <button class="btn clear" onclick="clearDisplay()">C</button>
+      <button class="btn" onclick="append('(')">(</button>
+      <button class="btn" onclick="append(')')">)</button>
+      <button class="btn operator" onclick="append('/')">÷</button>
+      <button class="btn operator" onclick="append('*')">×</button>
+
+      <button class="btn" onclick="append('7')">7</button>
+      <button class="btn" onclick="append('8')">8</button>
+      <button class="btn" onclick="append('9')">9</button>
+      <button class="btn operator" onclick="append('-')">−</button>
+      <button class="btn operator" onclick="append('+')">+</button>
+
+      <button class="btn" onclick="append('4')">4</button>
+      <button class="btn" onclick="append('5')">5</button>
+      <button class="btn" onclick="append('6')">6</button>
+      <button class="btn operator" onclick="append('**')">^</button>
+      <button class="btn operator" onclick="append('Math.sqrt(')">√</button>
+
+      <button class="btn" onclick="append('1')">1</button>
+      <button class="btn" onclick="append('2')">2</button>
+      <button class="btn" onclick="append('3')">3</button>
+      <button class="btn" onclick="append('Math.log10(')">log</button>
+      <button class="btn" onclick="append('Math.log(')">ln</button>
+
+      <button class="btn" onclick="append('0')">0</button>
+      <button class="btn" onclick="append('.')">.</button>
+      <button class="btn" onclick="append('Math.PI')">π</button>
+      <button class="btn" onclick="append('Math.E')">e</button>
+      <button class="btn equal" onclick="calculate()">=</button>
+
+      <button class="btn wide" onclick="append('Math.sin(')">sin</button>
+      <button class="btn wide" onclick="append('Math.cos(')">cos</button>
+      <button class="btn wide" onclick="append('Math.tan(')">tan</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+
+    function append(value) {
+      if (display.innerText === '0') {
+        display.innerText = '';
+      }
+      display.innerText += value;
+    }
+
+    function clearDisplay() {
+      display.innerText = '0';
+    }
+
+    function calculate() {
+      try {
+        const result = eval(display.innerText);
+        display.innerText = result;
+      } catch (error) {
+        display.innerText = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
